@@ -22,15 +22,19 @@ postSubmit.addEventListener('click', e => {
     }
 
     //create post
-    http.post('http://localhost:3000/posts', post)
-    .then((result) => {
-        console.log('POSTED');
-    }).catch((err) => {
-        console.log(err);
-    });
 
-    e.preventDefault();
-})
+    if(post.title === '' || post.body === ''){
+        ui.showAlert('Please check your input fields','notification is-danger is-light');
+    }else{
+        http.post('http://localhost:3000/posts', post)
+        .then((result) => {
+            ui.showAlert('Post added successfully','notification is-success is-light');
+        }).catch((err) => {
+            console.log(err);
+        });
+        e.preventDefault();
+    }
+});
 
 //getPosts function
 function getPosts() {

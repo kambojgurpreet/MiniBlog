@@ -28,4 +28,28 @@ class UI{
 
         this.posts.innerHTML = output;
     }
+
+    showAlert(message, className){
+        //create div
+        const div = document.createElement('div');
+
+        //add class
+        div.className = className;
+
+        //add text
+        div.appendChild(document.createTextNode(message));
+
+        //get element
+        const container = document.getElementById('errContainer');
+        //container.className = secondaryClass;
+
+        //get post title element
+        const errTitle = document.querySelector('.errTitle');
+        container.insertBefore(div, errTitle);
+
+        //Timeout
+        setTimeout(() => {
+            document.querySelector('.notification').remove();
+        },1500);
+    }
 }
